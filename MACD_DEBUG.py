@@ -47,8 +47,8 @@ def main():
 
 
         # Buy and sell signals
-        df["Buy"] = (df["MACD"] > df["Signal"]) & (df["MACD"].shift() < df["Signal"].shift())
-        df["Sell"] = (df["MACD"] < df["Signal"]) & (df["MACD"].shift() > df["Signal"].shift())
+        df["Buy"] = (df["MACD"] >= df["Signal"]) & (df["MACD"].shift() <= df["Signal"].shift())
+        df["Sell"] = (df["MACD"] <= df["Signal"]) & (df["MACD"].shift() >= df["Signal"].shift())
 
 
         exp1 = df['Close'].ewm(span=12, adjust=False).mean()
